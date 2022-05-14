@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import { useSetRecoilState, useRecoilValue } from 'recoil'
+import { darkModeState, toggleDarkModeState } from './state/globalState'
 
 function App() {
+  const isDarkModeEnabled = useRecoilValue(darkModeState)
+  const toggleDarkMode = useSetRecoilState(toggleDarkModeState)
+
+  !isDarkModeEnabled
+    ? document.body.classList.add('dark-mode')
+    : document.body.classList.remove('dark-mode')
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Recoil
+      <button type="button" onChange={toggleDarkMode}>
+        กด
+      </button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
